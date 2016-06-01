@@ -41,13 +41,23 @@ configure:
 
 # OASIS_STOP
 
-setup: 	_oasis
+setup:	_oasis
 	oasis setup -setup-update dynamic
 
-V    = 0.3
-NAME = ocaml-bisect-summary-$V
-TAR  = $(NAME).tar.gz
+V    = 	0.3
+NAME = 	ocaml-bisect-summary-$V
+TAR  = 	$(NAME).tar.gz
 
 tar:
 	git archive --prefix $(NAME)/ --format=tar HEAD | gzip > $(TAR)
 	cp $(TAR) $(HOME)/src/xen-api-base-specs/SOURCES
+
+TAG =	v$V
+GITHUB =https://github.com/lindig/bisect-summary
+ZIP =	$(GITHUB)/archive/$(TAG).zip
+
+url:	FORCE
+	echo	"archive: \"$(ZIP)\"" > url
+	echo	"checksum: \"`curl -L $(ZIP)| md5 -q`\"" >> url
+
+
