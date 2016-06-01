@@ -44,3 +44,10 @@ configure:
 setup: 	_oasis
 	oasis setup -setup-update dynamic
 
+V    = 0.3
+NAME = ocaml-bisect-summary-$V
+TAR  = $(NAME).tar.gz
+
+tar:
+	git archive --prefix $(NAME)/ --format=tar HEAD | gzip > $(TAR)
+	cp $(TAR) $(HOME)/src/xen-api-base-specs/SOURCES
