@@ -1,4 +1,6 @@
 
+[![Build Status](https://travis-ci.org/lindig/bisect-summary.svg?branch=master)](https://travis-ci.org/lindig/bisect-summary)
+
 # Bisect Summary
 
 This tool reads files produced by OCaml coverage analysis tool
