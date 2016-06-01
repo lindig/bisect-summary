@@ -23,6 +23,10 @@ installed via Opam:
 
     $ opam install bisect-summary
 
+In the meantime:
+
+    $ opam pin add bisect-summary https://github.com/lindig/bisect-summary.git
+
 # Building
 
     $ opam install oasis
