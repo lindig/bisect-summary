@@ -1,0 +1,25 @@
+# vim: ts=2 sw=2 et:
+#
+
+Name          : bisect-summary
+Version       : 0.3
+Synopsis      : Analysis of code coverage collected with bisect_ppx
+Authors       : Christian Lindig <christian.lindig@citrix.com>
+Maintainers   : Christian Lindig <christian.lindig@citrix.com>
+License       : MIT
+OASISFormat   : 0.4
+BuildTools    : ocamlbuild
+Plugins       : META (0.4), DevFiles (0.4)
+Description   :
+  Simple analysis of code coverage collected with bisect_ppx. This tool only reads the data produced by bisect_ppx at runtime and doesn't need
+  access to source files or *.pmx files created by bisect-ppx at compile time.
+
+Executable "bisect-summary"
+  Path            : src
+  MainIs          : summary.ml
+  CompiledObject  : native
+  Install         : true
+  BuildDepends    :
+    oasis,
+    bisect_ppx.runtime
+
