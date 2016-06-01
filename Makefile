@@ -52,7 +52,7 @@ tar:
 	git archive --prefix $(NAME)/ --format=tar HEAD | gzip > $(TAR)
 	cp $(TAR) $(HOME)/src/xen-api-base-specs/SOURCES
 
-TAG =	v$V
+TAG =	v0.2
 GITHUB =https://github.com/lindig/bisect-summary
 ZIP =	$(GITHUB)/archive/$(TAG).zip
 
@@ -60,4 +60,5 @@ url:	FORCE
 	echo	"archive: \"$(ZIP)\"" > url
 	echo	"checksum: \"`curl -L $(ZIP)| md5 -q`\"" >> url
 
+FORCE:;
 
