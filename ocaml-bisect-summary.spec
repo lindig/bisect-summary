@@ -1,4 +1,3 @@
-%global debug_package %{nil}
 
 Name:           ocaml-bisect-summary
 Version:        0.4
@@ -37,5 +36,5 @@ make install
 
 
 %changelog
-* Wed Jun  1 2016 Christian Lindig <christian.lindig@citrix.com> - 0.4-1
+* Fri Jun  3 2016 Christian Lindig <christian.lindig@citrix.com> - 0.4-1
   Initial packaging
