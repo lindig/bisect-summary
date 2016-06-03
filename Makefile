@@ -51,8 +51,9 @@ TAR  = 	$(NAME).tar.gz
 tar:
 	git archive --prefix $(NAME)/ --format=tar HEAD | gzip > $(TAR)
 	cp $(TAR) $(HOME)/src/xen-api-base-specs/SOURCES
+	cp ocaml-bisect-summary.spec $(HOME)/src/xen-api-base-specs/SPECS
 
-TAG =	0.3
+TAG =	0.4
 GITHUB =https://github.com/lindig/bisect-summary
 ZIP =	$(GITHUB)/archive/$(TAG).zip
 

@@ -6,7 +6,7 @@ Release:        1%{?dist}
 Summary:        Report code coverage from bisect_ppx runtime files
 License:        LGPL
 URL:            https://github.com/lindig/bisect-summary
-Source0:        https://github.com/lindig/%{name}/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
+Source0:        https://github.com/lindig/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 BuildRequires:  oasis-devel
 BuildRequires:  ocaml
 BuildRequires:  ocaml-findlib
@@ -21,7 +21,7 @@ produced at runtime and doesn't require access to the source code and
 point files that bisect_ppx produces at compile time.
 
 %prep
-%setup -q
+%setup -q -n bisect-summary-%{version}
 
 %build
 ocaml setup.ml -configure --prefix /usr --destdir %{buildroot}
