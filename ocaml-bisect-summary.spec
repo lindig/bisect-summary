@@ -1,5 +1,5 @@
 Name:           ocaml-bisect-summary
-Version:        0.4
+Version:        0.5
 Release:        1%{?dist}
 Summary:        Report code coverage from bisect_ppx runtime files
 License:        MIT
@@ -35,5 +35,6 @@ make install
 
 
 %changelog
+* Tue Jun  7 2016 Christian Lindig <christian.lindig@citrix.com> - 0.5-1
 * Fri Jun  3 2016 Christian Lindig <christian.lindig@citrix.com> - 0.4-1
   Initial packaging
