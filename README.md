@@ -20,16 +20,17 @@ is simpler but also more limited.
 
 # Installation
 
-I am planning a release as Opam package. Once this is done, it can be
-installed via Opam:
+Bisect Summary is eay to install via Opam:
 
     $ opam install bisect-summary
 
-In the meantime:
+If you prefer the latest version, you can pin this repository:
 
     $ opam pin add bisect-summary https://github.com/lindig/bisect-summary.git
 
 # Building
+
+If you like to work on the code directly without installing it via Opam:
 
     $ opam install oasis
     $ opam install bisect_ppx
