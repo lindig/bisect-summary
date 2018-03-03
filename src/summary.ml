@@ -68,8 +68,9 @@ let read
   : string list -> runtime
   = fun files ->
   files
-  |> List.map Bisect_common.read_runtime_data
-  |> List.fold_left merge []
+  |> List.fold_left (fun accum file ->
+    merge accum (Bisect_common.read_runtime_data file)
+  ) []
 
 (** [popcount array] returns the number of non-zero entries in an array
  * *)
