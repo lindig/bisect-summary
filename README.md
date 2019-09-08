@@ -1,4 +1,3 @@
-
 [![Build Status](https://travis-ci.org/lindig/bisect-summary.svg?branch=master)](https://travis-ci.org/lindig/bisect-summary)
 
 # Bisect Summary
@@ -32,9 +31,9 @@ If you prefer the latest version, you can pin this repository:
 
 If you like to work on the code directly without installing it via Opam:
 
-    $ opam install oasis
+    $ opam install dune
     $ opam install bisect_ppx
-    $ make
+    $ dune build @install
 
 # Usage
 
