@@ -1,21 +1,20 @@
-opam-version   : "2.0"
-maintainer     : "Christian Lindig <lindig@citrix.com>"
-authors        : ["Christian Lindig <lindig@citrix.com>"]
-license        : "MIT"
-homepage       : "https://github.com/lindig/bisect-summary"
-bug-reports    : "https://github.com/lindig/bisect-summary/issues"
-dev-repo       : "git://github.com/lindig/bisect-summary.git"
-synopsis       : "Simple analysis of coverage data created by bisect-ppx"
-build: [
-  ["dune" "build" "-p" name "-j" jobs]
-]
-depends: [
-  "bisect_ppx"
-  "dune" {build & >= "1.11.0"}
-]
-description: """bisect-summary - simple analysis of coverage data created by bisect-ppx
+opam-version: "2.0"
+synopsis: "Simple analysis of coverage data created by bisect-ppx"
+description: """
+bisect-summary - simple analysis of coverage data created by bisect-ppx
 
 This tool reads the data produced by bisect-ppx-instrumented code at
 runtime and reports the coverate ratio. Unlike bisect-ppx-report, it
 doesn't require access to the source code of the instrumented code and
 the *.pmx files that bisect-ppx created at instrumentation time."""
+maintainer: "Christian Lindig <lindig@citrix.com>"
+authors: "Christian Lindig <lindig@citrix.com>"
+license: "MIT"
+homepage: "https://github.com/lindig/bisect-summary"
+bug-reports: "https://github.com/lindig/bisect-summary/issues"
+depends: [
+  "bisect_ppx" {< "2.7.0"}
+  "dune" {build & >= "1.11.0"}
+]
+build: ["dune" "build" "-p" name "-j" jobs]
+dev-repo: "git://github.com/lindig/bisect-summary.git"
