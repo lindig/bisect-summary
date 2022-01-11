@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lindig/bisect-summary.svg?branch=master)](https://travis-ci.org/lindig/bisect-summary)
+![Build](https://github.com/lindig/bisect-summary/workflows/CI/badge.svg)
 
 # Bisect Summary
 
