@@ -10,7 +10,7 @@
  * ocamlbuild -use-ocamlfind -pkg bisect_ppx summary.native
  *)
 
-module B  = Bisect.Common
+[@@@ocaml.warning "-3"]
 
 (* these are the types used by [bisect_ppx] *)
 type file     = string
@@ -53,7 +53,7 @@ let merge
     | rx, [] -> rx
     | (fx, px)::rx, (fy, py)::ry          when fx = fy ->
       (fx, add px py) :: loop rx ry
-    | (fx, px)::rx, ((fy, py)::ry as yy)  when fx < fy ->
+    | (fx, px)::rx, ((fy, _)::_ as yy)  when fx < fy ->
       (fx, px) :: loop rx yy
     | xx, (fy, py)::ry ->                 (*   fx > fy *)
       (fy, py) :: loop xx ry
@@ -66,7 +66,7 @@ let read
   : string list -> runtime
   = fun files ->
   files
-  |> List.map B.read_runtime_data
+  |> List.map Bisect.Common.read_runtime_data
   |> List.fold_left merge []
 
 (** [popcount array] returns the number of non-zero entries in an array
@@ -74,7 +74,7 @@ let read
 let popcount counters =
   let add pop = function
     | 0 -> pop
-    | n -> pop + 1
+    | _ -> pop + 1
   in
     Array.fold_left add 0 counters
 
@@ -88,7 +88,7 @@ let report
   let nonzero = popcount counters in
   let ratio = match total with
     | 0 -> 0.0
-    | n -> 100.0 *. float_of_int nonzero /. float_of_int total
+    | _ -> 100.0 *. float_of_int nonzero /. float_of_int total
   in
     Printf.printf "%5.1f%% [%4d/%-4d] %s\n" ratio nonzero total name
 
@@ -114,8 +114,8 @@ let main () =
 let init name =
   let (//)    = Filename.concat in
   let tmpdir  = Filename.get_temp_dir_name () in
-    try 
-      ignore (Sys.getenv "BISECT_FILE") 
+    try
+      ignore (Sys.getenv "BISECT_FILE")
     with Not_found ->
       Unix.putenv "BISECT_FILE" (tmpdir // Printf.sprintf "bisect-%s-" name)
 
