@@ -1,3 +1,4 @@
 (executable
   (name summary)
-  (libraries unix bisect_ppx))
+  (public_name bisect-summary)
+  (libraries unix bisect_ppx.common))

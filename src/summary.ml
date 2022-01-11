@@ -15,7 +15,8 @@
 (* these are the types used by [bisect_ppx] *)
 type file     = string
 type count    = int
-type runtime  = (file * count array) list
+type points   = string
+type runtime  = (file * (count array * points)) list
 
 (** [minmax x y] orders two arrays by length and returns them as (x,
  * y) if x is the shorter one, and as (y, x) otherwise *)
@@ -29,12 +30,13 @@ let minmax
 * beyond its range. The result is a new array with the same length as
 * the longer array. *)
 let add
-  : int array -> int array -> int array
-  = fun x y ->
+  : (int array * points) -> (int array * points) -> (int array * points)
+  = fun (x,_xp) (y,_yp) ->
   let min, max = minmax x y in
   let result   = Array.copy max in
+  let points = "" in (* ignored for now in our report *)
   ( Array.iteri (fun i m -> result.(i) <- result.(i) + m) min
-  ; result
+  ; result, points
   )
 
 (* [merge x y] merges two runtime data sets into one. When data is
@@ -66,8 +68,9 @@ let read
   : string list -> runtime
   = fun files ->
   files
-  |> List.map Bisect.Common.read_runtime_data
-  |> List.fold_left merge []
+  |> List.fold_left (fun accum file ->
+    merge accum (Bisect_common.read_runtime_data file)
+  ) []
 
 (** [popcount array] returns the number of non-zero entries in an array
  * *)
@@ -92,16 +95,18 @@ let report
   in
     Printf.printf "%5.1f%% [%4d/%-4d] %s\n" ratio nonzero total name
 
+let snd_fst (_, (x, _)) = x
+
 (** [process files] processes a list of files with runtime coverage data
  **)
 let process
   : file list -> unit
   = fun files ->
   let runtime  = read files in
-  let all      = runtime |> List.map snd |> Array.concat in
+  let all      = runtime |> List.map snd_fst |> Array.concat in
     ( report "# Overall Coverage" all
     ; print_endline "--------------------------------------"
-    ; List.iter (fun (name, counters) -> report name counters) runtime
+    ; List.iter (fun (name, (counters, _)) -> report name counters) runtime
     )
 
 let main () =
